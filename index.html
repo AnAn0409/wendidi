@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wendy Wu · Content Operations Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&family=Noto+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-primary: #F7F3EE;
+  --bg-secondary: #EFEBE5;
+  --bg-card: #FFFFFF;
+  --text-primary: #2E2A25;
+  --text-secondary: #6B635A;
+  --text-tertiary: #9B9289;
+  --accent: #B07A56;
+  --accent-light: #D4A574;
+  --accent-dark: #8C5E3C;
+  --green-muted: #7A9E8E;
+  --green-dark: #4A6B5D;
+  --border: #E2DCD5;
+  --border-light: #EDE9E3;
+  --shadow-sm: 0 1px 3px rgba(46,42,37,0.06);
+  --shadow-md: 0 4px 16px rgba(46,42,37,0.08);
+  --shadow-lg: 0 8px 32px rgba(46,42,37,0.10);
+  --shadow-hover: 0 12px 40px rgba(46,42,37,0.14);
+  --radius: 12px;
+  --radius-lg: 20px;
+  --font-serif: 'Noto Serif', Georgia, serif;
+  --font-sans: 'Noto Sans', 'Segoe UI', sans-serif;
+  --max-width: 1100px;
+  --section-padding: 120px;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  line-height: 1.8;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== FADE-IN ANIMATION ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-delay-1 { transition-delay: 0.1s; }
+.fade-in-delay-2 { transition-delay: 0.2s; }
+.fade-in-delay-3 { transition-delay: 0.3s; }
+.fade-in-delay-4 { transition-delay: 0.4s; }
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ===== SECTION ===== */
+.section {
+  padding: var(--section-padding) 0;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(160deg, #F7F3EE 0%, #EDE5DA 40%, #E8DFD3 100%);
+  overflow: hidden;
+}
+
+/* Watercolor Landscape Background */
+.hero-landscape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.landscape-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Sun glow animation overlay */
+.sun-glow-overlay {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(255,240,200,0.9) 0%, rgba(255,220,150,0.5) 30%, rgba(255,200,100,0.2) 60%, transparent 80%);
+  border-radius: 50%;
+  animation: sunPulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sunPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* Sun beam sweeping across */
+.sun-beam {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255,248,220,0.3) 50%, transparent 60%);
+  animation: beamSweep 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes beamSweep {
+  0% { transform: translateX(-100%) rotate(0deg); }
+  50% { transform: translateX(0%) rotate(5deg); }
+  100% { transform: translateX(100%) rotate(0deg); }
+}
+
+/* Light overlay for animated effects */
+.light-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.light-overlay svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Animated sun glow */
+@keyframes sunPulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+.sun-glow {
+  animation: sunPulse 3s ease-in-out infinite;
+  transform-origin: 950px 180px;
+}
+
+/* Animated sun rays - more dramatic */
+@keyframes rayRotate {
+  0%, 100% { opacity: 0.6; transform: rotate(-15deg) scale(1); }
+  50% { opacity: 1; transform: rotate(15deg) scale(1.2); }
+}
+
+.sun-rays {
+  animation: rayRotate 4s ease-in-out infinite;
+  transform-origin: 950px 180px;
+}
+
+/* Cloud floating - more movement */
+@keyframes cloudDrift {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(60px) translateY(-10px); }
+  50% { transform: translateX(120px) translateY(0); }
+  75% { transform: translateX(60px) translateY(10px); }
+}
+
+.cloud-overlay {
+  animation: cloudDrift 15s ease-in-out infinite;
+}
+
+.cloud-overlay:nth-child(2) {
+  animation-delay: -7s;
+  animation-duration: 18s;
+}
+
+/* Tree swaying animation */
+@keyframes treeSway {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.trees {
+  animation: treeSway 3s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(176,122,86,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -15%;
+  left: -8%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(122,158,142,0.07) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  background: rgba(247, 243, 238, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 40px 48px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(46,42,37,0.1);
+}
+
+.hero-name {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroFadeIn 1s 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.hero-tagline {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  letter-spacing: 0.25em;
+  margin-bottom: 56px;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroFadeIn 1s 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.hero-divider {
+  width: 48px;
+  height: 1px;
+  background: var(--accent);
+  margin: 0 auto 48px;
+  opacity: 0;
+  animation: heroFadeIn 1s 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.hero-advantages {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(24px);
+  animation: heroFadeIn 1s 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.hero-advantages li {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.hero-advantages li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  flex-shrink: 0;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: heroFadeIn 1s 1.3s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+}
+
+.hero-scroll-hint span {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--text-tertiary);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 32px;
+  background: var(--accent-light);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes heroFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ===== ABOUT / EDUCATION ===== */
+.about-section {
+  background: var(--bg-primary);
+}
+
+.about-quote {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  line-height: 2;
+  color: var(--text-secondary);
+  max-width: 780px;
+  margin: 0 auto 64px;
+  text-align: left;
+  position: relative;
+}
+
+.about-quote::before {
+  content: '"';
+  font-family: var(--font-serif);
+  font-size: 6rem;
+  color: var(--accent-light);
+  opacity: 0.4;
+  position: absolute;
+  top: -40px;
+  left: -8px;
+  line-height: 1;
+}
+
+.edu-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.edu-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  text-align: left;
+}
+
+.edu-card-logo {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  filter: sepia(1) saturate(1.2) brightness(0.65) hue-rotate(-10deg);
+  opacity: 0.2;
+  transition: opacity 0.4s ease;
+}
+
+.edu-card:hover .edu-card-logo {
+  opacity: 0.35;
+}
+
+.edu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.edu-card-school {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.edu-card-period {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.edu-card-degree {
+  font-size: 0.95rem;
+  color: var(--accent-dark);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.edu-card-detail {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.edu-card-awards {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+  line-height: 1.8;
+}
+
+/* ===== TIMELINE ===== */
+.timeline-section {
+  background: var(--bg-secondary);
+  padding: 100px 0;
+  overflow: hidden;
+}
+
+.timeline-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-primary);
+  margin-bottom: 64px;
+  letter-spacing: 0.08em;
+}
+
+.timeline-wrapper {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.timeline-line {
+  position: absolute;
+  top: 8px;
+  left: 40px;
+  right: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-light), var(--green-muted));
+  z-index: 0;
+}
+
+.timeline-nodes {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  position: relative;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--bg-card);
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.timeline-node:hover .timeline-dot {
+  transform: scale(1.3);
+  background: var(--accent);
+}
+
+.timeline-node.clickable {
+  cursor: pointer;
+}
+
+.timeline-node.clickable.active .timeline-dot {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(176,122,86,0.2);
+  transform: scale(1.3);
+}
+
+.timeline-node.clickable.active .timeline-year {
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+
+.timeline-node.clickable.active .timeline-label {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.timeline-node:last-child .timeline-dot {
+  border-color: var(--green-muted);
+  background: var(--green-muted);
+  box-shadow: 0 0 0 4px rgba(122,158,142,0.2);
+}
+
+.timeline-year {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--accent-dark);
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
+}
+
+.timeline-label {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 130px;
+}
+
+/* ===== TRAIN ON TIMELINE ===== */
+.train-container {
+  position: absolute;
+  top: -48px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.train {
+  position: absolute;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  transform: translateX(-50%);
+  transition: left 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 2px 4px rgba(46,42,37,0.15));
+  animation: trainBounce 0.4s ease-in-out infinite;
+}
+
+.train svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Train position at each station - aligned with timeline dots */
+.train.at-ximalaya { left: calc(40px + (100% - 80px) * 0); }
+.train.at-xiaohongshu { left: calc(40px + (100% - 80px) * 0.5); }
+.train.at-nio { left: calc(40px + (100% - 80px) * 1); }
+
+/* Steam animation - fade out as it floats up */
+@keyframes steamFloat {
+  0% { transform: translateY(0) scale(0.8); opacity: 0.7; }
+  30% { transform: translateY(-6px) scale(1); opacity: 0.5; }
+  70% { transform: translateY(-14px) scale(1.2); opacity: 0.25; }
+  100% { transform: translateY(-22px) scale(1.4); opacity: 0; }
+}
+
+.train-steam {
+  animation: steamFloat 2s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.train-steam:nth-child(2) { animation-delay: 0.3s; }
+.train-steam:nth-child(3) { animation-delay: 0.6s; }
+
+/* Train bounce animation */
+@keyframes trainBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-2px); }
+}
+
+/* ===== CAREER TABS ===== */
+.career-section {
+  background: var(--bg-secondary);
+  padding: 100px 0;
+}
+
+.career-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 56px;
+  position: relative;
+}
+
+.career-tabs::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border);
+}
+
+.career-tab {
+  background: none;
+  border: none;
+  padding: 16px 28px 20px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  transition: all 0.3s ease;
+  flex: 1;
+  max-width: 220px;
+}
+
+.career-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: background 0.3s ease;
+  z-index: 1;
+}
+
+.career-tab.active::after {
+  background: var(--accent);
+}
+
+.career-tab:hover {
+  background: rgba(176,122,86,0.04);
+}
+
+.career-tab .tab-year {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.03em;
+  margin-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.career-tab.active .tab-year {
+  color: var(--accent-dark);
+}
+
+.career-tab .tab-label {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  transition: color 0.3s ease;
+  line-height: 1.4;
+}
+
+.career-tab.active .tab-label {
+  color: var(--text-primary);
+}
+
+.career-panel {
+  display: none;
+  animation: panelFadeIn 0.4s ease;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px;
+  margin-top: 48px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.career-panel.active {
+  display: block;
+}
+
+/* Triangle arrow pointing up to the active node */
+.career-panel::before {
+  content: '';
+  position: absolute;
+  top: -13px;
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 14px solid var(--bg-card);
+  z-index: 2;
+}
+
+/* Outer triangle for border effect */
+.career-panel::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid var(--border-light);
+  z-index: 1;
+}
+
+/* Position arrows per panel (3 nodes evenly spaced) */
+#panel-ximalaya::before { left: calc(16.67% - 14px); }
+#panel-ximalaya::after  { left: calc(16.67% - 15px); }
+#panel-xiaohongshu::before { left: calc(50% - 14px); }
+#panel-xiaohongshu::after  { left: calc(50% - 15px); }
+#panel-nio::before { left: calc(83.33% - 14px); }
+#panel-nio::after  { left: calc(83.33% - 15px); }
+
+@media (max-width: 768px) {
+  .career-panel {
+    padding: 32px 24px;
+    margin-top: 36px;
+  }
+  .career-panel::before, .career-panel::after {
+    left: 50% !important;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .career-tabs {
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .career-tab {
+    flex: 1 1 50%;
+    max-width: none;
+    padding: 12px 16px 16px;
+  }
+  .career-tab .tab-label {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .career-tab {
+    flex: 1 1 50%;
+    padding: 10px 12px 14px;
+  }
+}
+
+/* ===== EXPERIENCE SECTIONS ===== */
+.experience-section {
+  background: var(--bg-primary);
+  padding: 0;
+}
+
+.experience-block {
+  padding: var(--section-padding) 0;
+}
+
+.experience-block + .experience-block {
+  border-top: 1px dashed var(--border);
+}
+
+.exp-intro {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  line-height: 2;
+  color: var(--text-secondary);
+  max-width: 760px;
+  margin: 0 auto 40px;
+  text-align: left;
+  position: relative;
+  padding-left: 108px;
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(to bottom, var(--accent), var(--accent-light)) 1;
+}
+
+.exp-intro.no-icon {
+  padding-left: 0;
+  border-left: none;
+}
+
+.exp-intro::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 72px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  pointer-events: none;
+}
+
+/* Ximalaya - Audio waveform */
+#panel-ximalaya .exp-intro::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 80'%3E%3Crect x='8' y='24' width='6' height='32' rx='3' fill='%23D4A574' fill-opacity='0.22'/%3E%3Crect x='22' y='10' width='6' height='60' rx='3' fill='%23D4A574' fill-opacity='0.22'/%3E%3Crect x='36' y='28' width='6' height='24' rx='3' fill='%23D4A574' fill-opacity='0.22'/%3E%3Crect x='50' y='14' width='6' height='52' rx='3' fill='%23D4A574' fill-opacity='0.22'/%3E%3Crect x='64' y='32' width='6' height='16' rx='3' fill='%23D4A574' fill-opacity='0.22'/%3E%3Crect x='78' y='18' width='6' height='44' rx='3' fill='%23D4A574' fill-opacity='0.22'/%3E%3Crect x='92' y='26' width='6' height='28' rx='3' fill='%23D4A574' fill-opacity='0.22'/%3E%3C/svg%3E");
+}
+
+/* Xiaohongshu - Mobile phone */
+#panel-xiaohongshu .exp-intro:first-of-type::before {
+  width: 64px;
+  left: 22px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 100'%3E%3Crect x='3' y='3' width='54' height='94' rx='10' fill='none' stroke='%23D4A574' stroke-width='3' opacity='0.24'/%3E%3Crect x='20' y='7' width='20' height='4' rx='2' fill='%23D4A574' opacity='0.18'/%3E%3Cline x1='8' y1='15' x2='52' y2='15' stroke='%23D4A574' stroke-width='1' opacity='0.15'/%3E%3Crect x='8' y='19' width='20' height='24' rx='3' fill='none' stroke='%23D4A574' stroke-width='1.5' opacity='0.18'/%3E%3Crect x='8' y='47' width='20' height='16' rx='3' fill='none' stroke='%23D4A574' stroke-width='1.5' opacity='0.18'/%3E%3Crect x='8' y='67' width='20' height='18' rx='3' fill='none' stroke='%23D4A574' stroke-width='1.5' opacity='0.18'/%3E%3Crect x='32' y='19' width='20' height='16' rx='3' fill='none' stroke='%23D4A574' stroke-width='1.5' opacity='0.18'/%3E%3Crect x='32' y='39' width='20' height='24' rx='3' fill='none' stroke='%23D4A574' stroke-width='1.5' opacity='0.18'/%3E%3Crect x='32' y='67' width='20' height='18' rx='3' fill='none' stroke='%23D4A574' stroke-width='1.5' opacity='0.18'/%3E%3Cline x1='8' y1='89' x2='52' y2='89' stroke='%23D4A574' stroke-width='1' opacity='0.15'/%3E%3Ccircle cx='16' cy='94' r='2' fill='%23D4A574' opacity='0.15'/%3E%3Ccircle cx='30' cy='94' r='2' fill='%23D4A574' opacity='0.15'/%3E%3Ccircle cx='44' cy='94' r='2' fill='%23D4A574' opacity='0.15'/%3E%3C/svg%3E");
+}
+
+/* NIO - Electric car */
+#panel-nio .exp-intro::before {
+  width: 80px;
+  left: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 70'%3E%3Cpath d='M22,46 Q24,30 35,22 Q48,14 70,12 Q92,14 105,22 Q116,30 118,46' fill='none' stroke='%23D4A574' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round' opacity='0.24'/%3E%3Cpath d='M44,30 Q52,20 70,18 Q88,20 96,30' fill='none' stroke='%23D4A574' stroke-width='1.5' stroke-linecap='round' opacity='0.16'/%3E%3Cline x1='70' y1='18' x2='70' y2='30' stroke='%23D4A574' stroke-width='1' opacity='0.13'/%3E%3Cpath d='M14,46 L28,46 M50,46 L90,46 M112,46 L126,46' stroke='%23D4A574' stroke-width='2' stroke-linecap='round' opacity='0.22'/%3E%3Ccircle cx='39' cy='48' r='10' fill='none' stroke='%23D4A574' stroke-width='2.5' opacity='0.24'/%3E%3Ccircle cx='39' cy='48' r='4.5' fill='none' stroke='%23D4A574' stroke-width='1.5' opacity='0.15'/%3E%3Ccircle cx='101' cy='48' r='10' fill='none' stroke='%23D4A574' stroke-width='2.5' opacity='0.24'/%3E%3Ccircle cx='101' cy='48' r='4.5' fill='none' stroke='%23D4A574' stroke-width='1.5' opacity='0.15'/%3E%3Cpath d='M19,40 Q20,38 22,37' stroke='%23D4A574' stroke-width='2' stroke-linecap='round' opacity='0.18'/%3E%3Cpath d='M121,40 Q120,38 118,37' stroke='%23D4A574' stroke-width='2' stroke-linecap='round' opacity='0.18'/%3E%3C/svg%3E");
+}
+
+.exp-duties {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 760px;
+  margin: 0 auto 48px;
+}
+
+.duty-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.duty-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.duty-card-title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.duty-card-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 18px;
+  background: var(--accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.duty-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  padding-left: 12px;
+}
+
+/* ===== PROJECT CARDS ===== */
+.projects-label {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.15em;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94),
+              box-shadow 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.project-card-cover {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--bg-secondary);
+}
+
+.project-card-emoji-cover {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.project-card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card-title {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  line-height: 1.5;
+  min-height: 4.2em;
+}
+
+.project-card-desc {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+  line-height: 1.7;
+  flex: 1;
+}
+
+.project-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.78rem;
+  color: var(--accent);
+  margin-top: 12px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: color 0.2s ease, gap 0.2s ease;
+}
+
+.project-card:hover .project-card-link {
+  color: var(--accent-dark);
+  gap: 8px;
+}
+
+/* ===== AWARDS ===== */
+.awards-section {
+  background: var(--bg-secondary);
+}
+
+.awards-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-primary);
+  margin-bottom: 56px;
+  letter-spacing: 0.08em;
+}
+
+.awards-list {
+  max-width: 600px;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.award-item {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border-light);
+  transition: padding-left 0.3s ease;
+}
+
+.award-item:first-child {
+  border-top: 1px solid var(--border-light);
+}
+
+.award-item:hover {
+  padding-left: 8px;
+}
+
+.award-year {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  min-width: 40px;
+}
+
+.award-name {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ===== SUBSECTION LABELS ===== */
+.sub-section-label {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 48px 0 20px;
+  padding-left: 14px;
+  border-left: 3px solid var(--accent);
+}
+
+.sub-section-label:first-of-type {
+  margin-top: 32px;
+}
+
+/* Small project cards grid */
+.projects-grid-small {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.project-card-small {
+  display: block;
+  background: var(--bg-card);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.project-card-small:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.project-card-small .small-card-emoji {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.project-card-small .small-card-body {
+  padding: 12px 14px;
+}
+
+.project-card-small .small-card-title {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.project-card-small .small-card-tag {
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+}
+
+/* Creator tags */
+.creators-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.creator-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.creator-tag:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.creator-tag .creator-icon {
+  font-size: 0.9rem;
+}
+
+/* Video cards - horizontal layout */
+.projects-grid-video {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.video-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.video-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.video-card .video-emoji-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #B07A56 0%, #D4A574 50%, #E8C9A8 100%);
+  object-position: top;
+}
+
+.video-card .video-body {
+  padding: 10px 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-card .video-title {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.video-card .video-stat {
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .projects-grid-small {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .projects-grid-video {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--text-primary);
+  color: rgba(255,255,255,0.6);
+  padding: 56px 0;
+  text-align: center;
+}
+
+.footer-contact {
+  font-size: 0.92rem;
+  letter-spacing: 0.08em;
+  line-height: 2;
+}
+
+.footer-name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 12px;
+  letter-spacing: 0.15em;
+}
+
+.footer-divider {
+  width: 32px;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 20px auto;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 80px;
+  }
+
+  .container {
+    padding: 0 24px;
+  }
+
+  .hero-name {
+    font-size: 2.6rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-tagline {
+    font-size: 0.95rem;
+    letter-spacing: 0.15em;
+    margin-bottom: 40px;
+  }
+
+  .hero-advantages li {
+    font-size: 0.88rem;
+    text-align: left;
+  }
+
+  .about-quote {
+    font-size: 1.05rem;
+    text-align: left;
+    padding-left: 16px;
+  }
+
+  .about-quote::before {
+    top: -24px;
+    left: 0;
+    font-size: 3rem;
+  }
+
+  .edu-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .edu-card {
+    padding: 28px 24px;
+  }
+
+  /* Timeline: vertical on mobile */
+  .timeline-wrapper {
+    padding: 0;
+  }
+
+  .timeline-line {
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    right: auto;
+    width: 2px;
+    height: auto;
+    transform: none;
+  }
+
+  .timeline-nodes {
+    flex-direction: column;
+    gap: 36px;
+    padding-left: 56px;
+  }
+
+  .timeline-node {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -44px;
+    top: 2px;
+    margin-bottom: 0;
+    width: 14px;
+    height: 14px;
+  }
+
+  .timeline-year {
+    margin-bottom: 2px;
+  }
+
+  .timeline-label {
+    max-width: none;
+  }
+
+  .timeline-node-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Mobile train - vertical positioning */
+  .train-container {
+    top: 0;
+    left: -28px;
+    width: 60px;
+    height: 100%;
+  }
+
+  .train {
+    width: 40px;
+    height: 40px;
+    transform: translateY(-50%);
+    transition: top 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    left: auto !important;
+    animation: trainBounceMobile 0.4s ease-in-out infinite;
+  }
+
+  @keyframes trainBounceMobile {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(-2px); }
+  }
+
+  .train.at-ximalaya { top: 2%; }
+  .train.at-xiaohongshu { top: 42%; }
+  .train.at-nio { top: 82%; }
+
+  .exp-intro {
+    font-size: 0.98rem;
+    text-align: left;
+    margin-bottom: 40px;
+  }
+
+  .duty-card {
+    padding: 22px 20px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .award-item {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: 2.2rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 360px;
+  }
+
+  .timeline-title, .awards-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* ===== GRADIENT COVERS FOR PLACEHOLDER CARDS ===== */
+.gradient-cover-1 {
+  background: linear-gradient(135deg, #E8D5C4 0%, #C9A88E 50%, #A67C5B 100%);
+}
+.gradient-cover-2 {
+  background: linear-gradient(135deg, #C5D5CD 0%, #8FB5A2 50%, #5E8E78 100%);
+}
+.gradient-cover-3 {
+  background: linear-gradient(135deg, #D5C8D8 0%, #B09AB8 50%, #8A7090 100%);
+}
+.gradient-cover-4 {
+  background: linear-gradient(135deg, #D8D0C0 0%, #B8A890 50%, #968060 100%);
+}
+.gradient-cover-5 {
+  background: linear-gradient(135deg, #C0CDD8 0%, #90A8B8 50%, #607890 100%);
+}
+.gradient-cover-6 {
+  background: linear-gradient(135deg, #D8C8C0 0%, #C0A898 50%, #A08070 100%);
+}
+.gradient-cover-7 {
+  background: linear-gradient(135deg, #C8D8C8 0%, #A0B8A0 50%, #789878 100%);
+}
+.gradient-cover-8 {
+  background: linear-gradient(135deg, #D0C8D8 0%, #A898B8 50%, #807098 100%);
+}
+.gradient-cover-9 {
+  background: linear-gradient(135deg, #D8D0C8 0%, #C0B0A0 50%, #A09080 100%);
+}
+
+/* ===== SUBTLE NOISE TEXTURE ===== */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <!-- Watercolor Landscape Background -->
+  <div class="hero-landscape">
+    <img src="landscape.png" alt="Landscape" class="landscape-img" />
+    <div class="sun-beam"></div>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-name">Wendy Wu</h1>
+    <p class="hero-tagline" style="font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; letter-spacing: 0.05em; line-height: 2.2; max-width: 600px; margin: 0 auto 40px;">
+      Between words and code, my steps are light.<br>
+      With eyes of humanities, I measure the depth of tech-<br>
+      Translating stars into lamplight, making complex gentle.<br>
+      A quiet transformation, unfolding.
+    </p>
+  </div>
+
+</section>
+
+<!-- ===== ABOUT & EDUCATION ===== -->
+<section class="about-section section">
+  <div class="container">
+    <p class="about-quote fade-in">
+      I earned my Bachelor's and Master's degrees at Fudan University and UBC. My humanities background has provided endless inspiration for my career development in internet and technology companies.
+    </p>
+    <div class="edu-cards">
+      <div class="edu-card fade-in fade-in-delay-1">
+        <img class="edu-card-logo" src="fudan-logo.png" alt="Fudan University Logo">
+        <div class="edu-card-school">Fudan University</div>
+        <div class="edu-card-period">Sept 2009 - July 2013</div>
+        <div class="edu-card-degree">Bachelor of Arts · Chinese Language & Literature</div>
+        <div class="edu-card-detail">GPA 3.66 / 4 Top 10%</div>
+        <div class="edu-card-awards">Second-Class Scholarship, Outstanding Class Leader</div>
+      </div>
+      <div class="edu-card fade-in fade-in-delay-2">
+        <img class="edu-card-logo" src="ubc-logo.png" alt="UBC Logo">
+        <div class="edu-card-school">UBC · University of British Columbia</div>
+        <div class="edu-card-period">Sept 2014 - July 2016</div>
+        <div class="edu-card-degree">Master of Arts · Asian Studies</div>
+        <div class="edu-card-detail">GPA 89.7% Top 3%</div>
+        <div class="edu-card-awards">International Student Scholarship, Faculty of Arts Graduate Scholarship, Gregory Tso Memorial Scholarship</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CAREER ===== -->
+<section class="career-section">
+  <div class="container">
+    <h2 class="timeline-title fade-in">Career Journey</h2>
+
+    <!-- Timeline Navigation (clickable) -->
+    <div class="timeline-wrapper fade-in fade-in-delay-1">
+      <div class="timeline-line"></div>
+
+      <!-- Train that moves between stations -->
+      <div class="train-container">
+        <div class="train at-ximalaya" id="career-train">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Steam clouds -->
+            <g class="train-steam" opacity="0.5">
+              <ellipse cx="45" cy="12" rx="6" ry="4" fill="#9B9289"/>
+              <ellipse cx="50" cy="8" rx="4" ry="3" fill="#9B9289"/>
+            </g>
+            <g class="train-steam" opacity="0.4">
+              <ellipse cx="48" cy="10" rx="5" ry="3.5" fill="#9B9289"/>
+            </g>
+            <!-- Train body -->
+            <rect x="28" y="24" width="20" height="14" rx="2" fill="#8C5E3C"/>
+            <rect x="26" y="20" width="8" height="8" rx="1" fill="#6B635A"/>
+            <rect x="48" y="26" width="6" height="10" rx="1" fill="#B07A56"/>
+            <!-- Cabin -->
+            <rect x="8" y="28" width="18" height="16" rx="2" fill="#B07A56"/>
+            <rect x="12" y="32" width="6" height="8" rx="1" fill="#2E2A25"/>
+            <!-- Wheels -->
+            <circle cx="16" cy="48" r="5" fill="#2E2A25" stroke="#D4A574" stroke-width="2"/>
+            <circle cx="28" cy="48" r="5" fill="#2E2A25" stroke="#D4A574" stroke-width="2"/>
+            <circle cx="44" cy="48" r="5" fill="#2E2A25" stroke="#D4A574" stroke-width="2"/>
+            <!-- Connecting rod -->
+            <rect x="16" y="46" width="28" height="4" rx="1" fill="#6B635A"/>
+            <!-- Chimney -->
+            <rect x="42" y="16" width="6" height="10" rx="1" fill="#6B635A"/>
+            <!-- Headlight -->
+            <circle cx="52" cy="30" r="3" fill="#D4A574"/>
+            <!-- Cowcatcher -->
+            <polygon points="54,38 60,44 54,44" fill="#8C5E3C"/>
+            <!-- Tracks -->
+            <rect x="4" y="54" width="56" height="2" fill="#9B9289"/>
+            <rect x="8" y="56" width="4" height="3" fill="#9B9289"/>
+            <rect x="20" y="56" width="4" height="3" fill="#9B9289"/>
+            <rect x="32" y="56" width="4" height="3" fill="#9B9289"/>
+            <rect x="44" y="56" width="4" height="3" fill="#9B9289"/>
+            <rect x="56" y="56" width="4" height="3" fill="#9B9289"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="timeline-nodes">
+        <div class="timeline-node clickable active" data-tab="ximalaya">
+          <div class="timeline-dot"></div>
+          <div class="timeline-node-text">
+            <div class="timeline-year">Mar 2017 - Sept 2020</div>
+            <div class="timeline-label">Ximalaya<br>Content Ops · Overseas IP</div>
+          </div>
+        </div>
+        <div class="timeline-node clickable" data-tab="xiaohongshu">
+          <div class="timeline-dot"></div>
+          <div class="timeline-node-text">
+            <div class="timeline-year">Sept 2020 - Jan 2022</div>
+            <div class="timeline-label">Xiaohongshu<br>Humanities & Arts</div>
+          </div>
+        </div>
+        <div class="timeline-node clickable" data-tab="nio">
+          <div class="timeline-dot"></div>
+          <div class="timeline-node-text">
+            <div class="timeline-year">Jan 2022 - Present</div>
+            <div class="timeline-label">NIO<br>Content/Growth Ops</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Panel: Ximalaya ── -->
+    <div class="career-panel active" id="panel-ximalaya">
+      <p class="exp-intro">
+        I joined Ximalaya in 2017 and worked there for three and a half years. My role was to discover valuable content IPs and transform them into commercial products that bring growth to ordinary people. Here, I grew into an independent business leader.
+      </p>
+      <div class="exp-duties">
+        <div class="duty-card">
+          <div class="duty-card-title">Content Operations</div>
+          <div class="duty-card-desc">Developed annual growth strategies for the department, achieving the highest total sales in the entire business unit; produced 24 new courses throughout the year, with 7 being million-level projects</div>
+        </div>
+        <div class="duty-card">
+          <div class="duty-card-title">Growth Operations</div>
+          <div class="duty-card-desc">Proficient in innovative marketing strategies including community operations, content marketing, and trend marketing to increase new user acquisition. A single project generated 2M+ RMB revenue in its first week, with 50% off-platform new user acquisition</div>
+        </div>
+      </div>
+      <div class="projects-label">- Featured Projects -</div>
+      <div class="projects-grid">
+        <a class="project-card" href="https://www.ximalaya.com/album/30207086" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="https://imagev2.xmcdn.com/group67/M07/C7/A7/wKgMd13z2q_DRJcKAAZlnVfJSJA511.jpg" alt="100 Books That Changed the World" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">100 Books That Changed the World</div>
+            <div class="project-card-desc">20,000+ copies sold in the first week, revenue exceeding 2M RMB, Top 5 on the overall platform chart</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://www.ximalaya.com/album/35463857" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="https://imagev2.xmcdn.com/group77/M00/69/99/wKgO1V6PAv7StxEIAATnVK7lhYM550.jpg" alt="5-Minute Growth Academy for Global Elites" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">5-Minute Growth Academy for Global Elites</div>
+            <div class="project-card-desc">Ranked Top 3 on the overall platform chart in the first week</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://www.ximalaya.com/album/14783240" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="https://imagev2.xmcdn.com/group47/M08/A1/E6/wKgKm1t6qRTgWF9jAAKpivYr-I4734.jpg" alt="Yu Qiuyu's Compulsory Course on Chinese Culture" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">Yu Qiuyu's Compulsory Course on Chinese Culture</div>
+            <div class="project-card-desc">Annual revenue ranked #1 among new products that year</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://www.ximalaya.com/album/18546258" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="https://imagev2.xmcdn.com/group48/M0B/E3/A1/wKgKnFusQwHiChJkAAJARHyy5P8652.jpg" alt="Wang Dongyue's Enlightenment Course on Chinese & Western Philosophy" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">Wang Dongyue's Enlightenment Course on Chinese & Western Philosophy</div>
+            <div class="project-card-desc">Seed user community operations drove 100K first-day sales</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://www.ximalaya.com/album/12374479" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="https://imagev2.xmcdn.com/storages/d426-audiofreehighqps/8D/48/GKwRIJEHiel-AANh5AHoGcA2.jpeg" alt="Fudan Professor Fu Jie's Course on The Analects" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">Fudan Professor Fu Jie's Course on The Analects</div>
+            <div class="project-card-desc">My first independently managed project</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://www.ximalaya.com/album/14405528" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="https://imagev2.xmcdn.com/group72/M0B/63/02/wKgO0F42XYTSOqt6AAohq-8CVZ4597.jpg" alt="Master Course on Chinese History" loading="lazy" style="object-position: top;">
+          <div class="project-card-body">
+            <div class="project-card-title">Master Course on Chinese History</div>
+            <div class="project-card-desc">The first hit course in the history category</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── Panel: Xiaohongshu ── -->
+    <div class="career-panel" id="panel-xiaohongshu">
+      <p class="exp-intro">
+        In 2020, I joined the Xiaohongshu community as the head of the Humanities & Arts vertical. I planned many creative activities that brought more high-quality original content to the community. As publishing volume continued to grow, more creators were willing to join Xiaohongshu to share knowledge. Discovering potential creators, identifying trends, and witnessing their growth has been the most rewarding part of my time at Xiaohongshu.
+      </p>
+      <div class="exp-duties">
+        <div class="duty-card">
+          <div class="duty-card-title">Vertical Operations</div>
+          <div class="duty-card-desc">Developed art content ecosystem strategy from zero to one, integrating internal and external resources to continuously plan topic activities. Daily publishing volume in the art category increased by 343% within half a year</div>
+        </div>
+        <div class="duty-card">
+          <div class="duty-card-title">Creator Operations</div>
+          <div class="duty-card-desc">Identified and recruited 100+ quality creators, responsible for the full lifecycle growth of creators. Through content and activity planning, guided creator growth, and independently planned a short video column that helped a single blogger gain 120K+ followers</div>
+        </div>
+        <div class="duty-card">
+          <div class="duty-card-title">Campaign Operations</div>
+          <div class="duty-card-desc">Planned multiple S-level topic activities combining industry trends to enhance brand awareness. An independently planned online activity was awarded "UNESCO World Heritage Education Innovation Case"</div>
+        </div>
+      </div>
+      <div class="projects-label">- Featured Projects -</div>
+
+      <h4 class="sub-section-label">Flagship Online Campaigns</h4>
+      <div class="projects-grid" style="grid-template-columns: 5fr 5fr 4fr; align-items: stretch;">
+        <a class="project-card" href="https://www.xiaohongshu.com/user/profile/5f859da00000000001000c06/60939e3c000000000102778f?xsec_token=ABrpXB1IRjwYu35LLgobdQWoN5aqFTuBk9kiSufwwYF4g=&xsec_source=pc_user" target="_blank" rel="noopener" style="display:flex; flex-direction:column;">
+          <img class="project-card-cover" src="活动图片/博物馆.png" alt="Museum Adventures" loading="lazy" style="flex:1; object-fit:cover;">
+          <div class="project-card-body">
+            <div class="project-card-title">"Museum Adventures" Topic Campaign</div>
+            <div class="project-card-desc">Top international art museums joined, with nearly 6,000 participants, 220M post impressions, attracted 11 Shanghai museums to join, awarded UNESCO World Heritage Education Innovation Case</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://www.xiaohongshu.com/user/profile/5f859da00000000001000c06/61090c0c00000000010244b5?xsec_token=ABJgxSrTWVQrXr7qEyXb0xt1-HzMXTZ4Fq6fIE1SlKkpQ=&xsec_source=pc_user" target="_blank" rel="noopener" style="display:flex; flex-direction:column;">
+          <img class="project-card-cover" src="活动图片/小红书人文艺术.png" alt="Xiaohongshu Humanities & Arts Season" loading="lazy" style="flex:1; object-fit:cover;">
+          <div class="project-card-body">
+            <div class="project-card-title">"Xiaohongshu Humanities & Arts Season"</div>
+            <div class="project-card-desc">45,000 new posts accumulated, over 800M impressions, daily publishing volume in culture category increased by 52.2%</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+          <a class="project-card-small" href="https://www.xiaohongshu.com/user/profile/5f859da00000000001000c06/612f8d030000000001025cdc?xsec_token=AB3e563g_WJU7L-Tcn0wy3CKOKFkV9MI1MFgTPmo7VYWY=&xsec_source=pc_user" target="_blank" rel="noopener" style="position:relative; overflow:hidden; border-radius:10px;">
+            <img src="活动图片/我是国风守护人.png" alt="I am the Guardian of Chinese Style" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div style="position:absolute; bottom:0; left:0; right:0; height:44px; padding:6px 8px 0; background:linear-gradient(transparent 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.78) 100%); color:#fff; font-family:var(--font-serif); font-size:0.72rem; font-weight:600; line-height:1.3; display:flex; align-items:flex-start;">I am the Guardian of Chinese Style</div>
+          </a>
+          <a class="project-card-small" href="https://www.xiaohongshu.com/user/profile/5f859da00000000001000c06/618cfe5e000000000102fb12?xsec_token=AB0TJeQClGtOEz7YT0N2OOvoawU2Dr6q05LKXqROfcrFY=&xsec_source=pc_user" target="_blank" rel="noopener" style="position:relative; overflow:hidden; border-radius:10px;">
+            <img src="活动图片/博物馆高能玩家.png" alt="Museum Power Player Guide" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div style="position:absolute; bottom:0; left:0; right:0; height:44px; padding:6px 8px 0; background:linear-gradient(transparent 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.78) 100%); color:#fff; font-family:var(--font-serif); font-size:0.72rem; font-weight:600; line-height:1.3; display:flex; align-items:flex-start;">Museum Power Player Guide</div>
+          </a>
+          <a class="project-card-small" href="https://www.xiaohongshu.com/user/profile/5f859da00000000001000c06/619f3a79000000000102dbc9?xsec_token=ABKV-_xfnI9O2kOS0qBOfu285tZ-bLPVCeTA1ZR109lD8=&xsec_source=pc_user" target="_blank" rel="noopener" style="position:relative; overflow:hidden; border-radius:10px;">
+            <img src="活动图片/假如文物要出道.png" alt="If Cultural Relics Were to Debut" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div style="position:absolute; bottom:0; left:0; right:0; height:44px; padding:6px 8px 0; background:linear-gradient(transparent 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.78) 100%); color:#fff; font-family:var(--font-serif); font-size:0.72rem; font-weight:600; line-height:1.3; display:flex; align-items:flex-start;">If Cultural Relics Were to Debut</div>
+          </a>
+          <a class="project-card-small" href="https://www.xiaohongshu.com/user/profile/5f859da00000000001000c06/6166d287000000000102cb12?xsec_token=ABA2s2EZ37LUKj2d3QYl8IMcpb0XSq7yXnidUPXzaqGUY=&xsec_source=pc_user" target="_blank" rel="noopener" style="position:relative; overflow:hidden; border-radius:10px;">
+            <img src="活动图片/不慌攻略.png" alt="Xu Zhiyuan Calls for Unhurried Tips" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div style="position:absolute; bottom:0; left:0; right:0; height:44px; padding:6px 8px 0; background:linear-gradient(transparent 0%, rgba(0,0,0,0.55) 30%, rgba(0,0,0,0.78) 100%); color:#fff; font-family:var(--font-serif); font-size:0.72rem; font-weight:600; line-height:1.3; display:flex; align-items:flex-start;">Xu Zhiyuan Calls for Unhurried Tips</div>
+          </a>
+        </div>
+      </div>
+
+      <h4 class="sub-section-label">Flagship Content</h4>
+      <p class="exp-intro no-icon" style="text-align:left; margin:0 0 24px; font-size:0.95rem;">"Finding the True Goddess of the Louvre" video series: 10 short videos converted to 120K+ followers, with single episode highest likes exceeding 90K</p>
+      <div class="projects-grid-video" style="grid-template-columns: repeat(5, 1fr);">
+        <a class="video-card" href="https://www.xiaohongshu.com/search_result/60796ea2000000002103986d?xsec_token=ABkXW_6ogC5N8obgpxKaPHSa3UvoeeKrRoYI4jmmk2rVg=&xsec_source=pc_search" target="_blank" rel="noopener">
+          <img class="video-emoji-cover" src="断臂维纳斯.png" alt="Venus de Milo" style="object-fit: cover;">
+          <div class="video-body"><div class="video-title">What Makes Venus de Milo Beautiful?</div><div class="video-stat">👍 6,902</div></div>
+        </a>
+        <a class="video-card" href="https://www.xiaohongshu.com/explore/607579e2000000002103b314?xsec_token=ABMvgOdsuizpInfEzqyxGDua8m8OjjRlH9TXvtmOalMMg=&xsec_source=pc_search" target="_blank" rel="noopener">
+          <img class="video-emoji-cover" src="蒙娜丽莎.png" alt="Mona Lisa" style="object-fit: cover;">
+          <div class="video-body"><div class="video-title">What is Mona Lisa Really Smiling At?</div><div class="video-stat">👍 16K</div></div>
+        </a>
+        <a class="video-card" href="https://www.xiaohongshu.com/user/profile/5ae179384eacab46c8fc79a7/607eb4560000000021038d36?xsec_token=AB_ZTrgRsCMQyY4ioO3s7_o_75-1GD5UYLT9m8JC88XJE=&xsec_source=pc_user" target="_blank" rel="noopener">
+          <img class="video-emoji-cover" src="胜利女神.png" alt="Winged Victory" style="object-fit: cover;">
+          <div class="video-body"><div class="video-title">Winged Victory: The True "Sexiness" of This Era</div><div class="video-stat">👍 8,766</div></div>
+        </a>
+        <a class="video-card" href="https://www.xiaohongshu.com/explore/60854ddb000000000102f89b?xsec_token=AB0k-yVAwBYj8DSa7WZuBbqjT2fojVFIFDTU66BVFyzGU=&xsec_source=pc_user" target="_blank" rel="noopener">
+          <img class="video-emoji-cover" src="妹妹为何要捏姐姐的胸.png" alt="Sister Pinching" style="object-fit: cover;">
+          <div class="video-body"><div class="video-title">Why is the Sister Pinching the Older Sister's Chest?</div><div class="video-stat">👍 90K</div></div>
+        </a>
+        <a class="video-card" href="https://www.xiaohongshu.com/user/profile/5ae179384eacab46c8fc79a7/608a9054000000000102db04?xsec_token=ABnPQnITb9a4P0FGiXTH2GKCOgl4nKrSDpQAhwfhtEug0=&xsec_source=pc_user" target="_blank" rel="noopener">
+          <img class="video-emoji-cover" src="甜美和欲望的洛可可.png" alt="Rococo Queen" style="object-fit: cover;">
+          <div class="video-body"><div class="video-title">The Rococo Queen of Sweetness and Desire</div><div class="video-stat">👍 9,594</div></div>
+        </a>
+        <a class="video-card" href="https://www.xiaohongshu.com/user/profile/5ae179384eacab46c8fc79a7/609a627c000000002103be5f?xsec_token=ABRhTrADgtMG_-aV_JQLbwvbsDbU7FYjw3s_0Jr_Rhj54=&xsec_source=pc_user" target="_blank" rel="noopener">
+          <img class="video-emoji-cover" src="大宫女.png" alt="Grande Odalisque" style="object-fit: cover;">
+          <div class="video-body"><div class="video-title">Deformed, Mysterious, Yet Stunning: Grande Odalisque</div><div class="video-stat">👍 11K</div></div>
+        </a>
+        <a class="video-card" href="https://www.xiaohongshu.com/user/profile/5ae179384eacab46c8fc79a7/6093cb4f00000000010254de?xsec_token=ABrpXB1IRjwYu35LLgobdQWqQY3NLSYoLO5VknG74VWiU=&xsec_source=pc_user" target="_blank" rel="noopener">
+          <img class="video-emoji-cover" src="拿破仑最爱的女人.png" alt="Napoleon" style="object-fit: cover;">
+          <div class="video-body"><div class="video-title">The Woman Napoleon Loved Most in His Life</div><div class="video-stat">👍 11K</div></div>
+        </a>
+        <a class="video-card" href="https://www.xiaohongshu.com/user/profile/5ae179384eacab46c8fc79a7/60a1f704000000000102867a?xsec_token=ABqfjfmAB509XdPEtpCTumI56kiB8SIbrIN3gKh5OZnA0=&xsec_source=pc_user" target="_blank" rel="noopener">
+          <img class="video-emoji-cover" src="她手上的信.png" alt="The Letter" style="object-fit: cover;">
+          <div class="video-body"><div class="video-title">The Letter in Her Hand Will Decide Her Husband's Fate</div><div class="video-stat">👍 22K</div></div>
+        </a>
+        <a class="video-card" href="https://www.xiaohongshu.com/user/profile/5ae179384eacab46c8fc79a7/60a63b5b0000000001025e7f?xsec_token=ABCOiFSyAXLj5MXQU9b6GfyAg_RBXBmyPyoyLv-QuuzpY=&xsec_source=pc_user" target="_blank" rel="noopener">
+          <img class="video-emoji-cover" src="维米尔.png" alt="Vermeer" style="object-fit: cover;">
+          <div class="video-body"><div class="video-title">The Secret of the Girl in Vermeer's Painting</div><div class="video-stat">👍 11K</div></div>
+        </a>
+        <a class="video-card" href="https://www.xiaohongshu.com/user/profile/5ae179384eacab46c8fc79a7/60af7cfc000000002103f6ad?xsec_token=ABpGp28Gi1408m8ToOfDFQVrbD3NjKH6iPRGF-36-m2e0=&xsec_source=pc_user" target="_blank" rel="noopener">
+          <img class="video-emoji-cover" src="雌雄同体.png" alt="Androgynous" style="object-fit: cover;">
+          <div class="video-body"><div class="video-title">Androgyny is the Highest Form of Beauty</div><div class="video-stat">👍 19K</div></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ── Panel: NIO ── -->
+
+    <div class="career-panel" id="panel-nio">
+      <p class="exp-intro">
+        In 2022, I seized an unexpected opportunity to move from platform to brand. At the NIO App, I applied content and activity methodologies to marketing and brand communication, building the "Car Experience" content system from zero to one, and cultivating a group of creative content creators.
+      </p>
+      <div class="exp-duties">
+        <div class="duty-card">
+          <div class="duty-card-title">Content Operations</div>
+          <div class="duty-card-desc">Built the NIO App "Car Experience" content system from zero to one, responsible for content volume and quality rate. Achieved 1,000+ weekly new posts, with content quality rate increasing from 10% to 30%</div>
+        </div>
+        <div class="duty-card">
+          <div class="duty-card-title">KOC Operations</div>
+          <div class="duty-card-desc">Designed comprehensive incentive systems and benefits to support creators, improved creator activity through community operations, producing high-quality and highly engaging video and graphic content</div>
+        </div>
+        <div class="duty-card">
+          <div class="duty-card-title">Content Marketing</div>
+          <div class="duty-card-desc">Planned short video and graphic content combining online trends, transforming technology into "understandable" and "relatable" marketing content to enhance online customer acquisition capabilities and efficiency</div>
+        </div>
+
+      </div>
+      <div class="projects-label">- Featured Projects -</div>
+
+      <h4 class="sub-section-label">KOC Commissioned Content</h4>
+      <div class="projects-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <a class="project-card" href="https://app.nio.com/skt/public/page/42d9db7b-c8b4-49e7-af91-841fcf777f70/9f6d15fcc685dc80ef9248862eb22a40" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/高端_.jpeg" alt="Why Does NIO Call Itself Premium?" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">Why Does NIO Call Itself Premium?</div>
+            <div class="project-card-desc">KOC commissioned content, 28K views</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://app.nio.com/app/community_content_h5/module_10050/share_comment?id=4267522&type=essay&is_nav_show=false&wv=lg" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/bba.jpg" alt="Car Buying Journey: BBA" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">Car Buying Journey | Initially Considered BBA</div>
+            <div class="project-card-desc">KOC commissioned content, 13K views</div>
+            <span class="project-card-link">View Details →</span>
+
+          </div>
+        </a>
+        <a class="project-card" href="https://www.douyin.com/video/7350379789380898102" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/倒闭.png" alt="Will NIO Go Bankrupt?" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">Will NIO Go Bankrupt?</div>
+            <div class="project-card-desc">KOC commissioned content, 14K Douyin likes</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://www.douyin.com/video/7384748096909102351" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/aeb救命瞬间.png" alt="NIO AEB Life-Saving Moment" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">NIO AEB Life-Saving Moment</div>
+            <div class="project-card-desc">KOC commissioned content, 3,897 Douyin likes</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://app.nio.com/app/community_content_h5/module_10050/content?id=521420&type=article&is_nav_show=false&wv=lg" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/沉浸声.jpeg" alt="How to Get Immersive Audio Experience" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">How to Get the Ultimate Immersive Audio Experience</div>
+            <div class="project-card-desc">KOC commissioned content, 44K views</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://app.nio.com/app/community_content_h5/module_10050/content?id=521891&type=article&is_nav_show=false&wv=lg" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/感知.jpeg" alt="ET7 Sensing Features" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">ET7 Sensing Features Can Also Be Used Like This?!</div>
+            <div class="project-card-desc">KOC commissioned content, 41K views</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://app.nio.com/app/community_content_h5/module_10050/content?id=523237&type=article&is_nav_show=false&wv=lg" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/氛围灯.jpeg" alt="ET5 Ambient Light Guide" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">Stunning Visuals! My ET5 Ambient Light Color Guide</div>
+            <div class="project-card-desc">KOC commissioned content, 39K views</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://app.nio.com/app/community_content_h5/module_10050/content?id=523395&type=article&is_nav_show=false&wv=lg" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/1wan公里.jpeg" alt="ET5 10,000 KM" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">10,000 KM in ET5: These Features Are the Most Practical!</div>
+            <div class="project-card-desc">KOC commissioned content, 38K views</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+      </div>
+
+      <h4 class="sub-section-label">Educational Original Content</h4>
+      <div class="projects-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <a class="project-card" href="https://app.nio.com/app/community_content_h5/module_10050/share_comment?id=4248423&type=essay&is_nav_show=false&wv=lg" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/baas.jpeg" alt="Understand BaaS Before Buying NIO" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">Understand BaaS Before Buying NIO</div>
+            <div class="project-card-desc">Original content, 31K views</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://app.nio.com/app/community_content_h5/module_10050/share_comment?id=4208900&type=essay&is_nav_show=false&wv=lg" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/激光雷达.jpeg" alt="Is LiDAR Necessary?" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">Is LiDAR Necessary?</div>
+            <div class="project-card-desc">Original content, 10K views</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://app.nio.com/app/community_content_h5/module_10050/content?type=article&id=537229&is_nav_show=false&wv=lg" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/一秒一公里.jpeg" alt="One Kilometer Per Second Charging" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">One Kilometer Per Second Charging: Can It Be Achieved?</div>
+            <div class="project-card-desc">Original content, 7K views</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+        <a class="project-card" href="https://app.nio.com/app/community_content_h5/module_10050/content?id=537016&type=article&is_nav_show=false&wv=lg" target="_blank" rel="noopener">
+          <img class="project-card-cover" src="蔚来图片/蔚来哪里好.jpeg" alt="Why Buy NIO?" loading="lazy">
+          <div class="project-card-body">
+            <div class="project-card-title">Someone Asked: Why Buy NIO?</div>
+            <div class="project-card-desc">Original content, 15K views</div>
+            <span class="project-card-link">View Details →</span>
+          </div>
+        </a>
+      </div>
+
+  </div>
+</section>
+
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+  </div>
+</footer>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+(function() {
+  'use strict';
+
+  // ── Intersection Observer: fade-in on scroll ──
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -60px 0px',
+    threshold: 0.15
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.fade-in').forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // ── Image fallback: if external images fail, show a gradient placeholder ──
+  document.querySelectorAll('.project-card-cover').forEach(function(img, index) {
+    img.addEventListener('error', function() {
+      var div = document.createElement('div');
+      div.className = 'project-card-emoji-cover gradient-cover-' + ((index % 9) + 1);
+      div.textContent = '📚';
+      img.parentNode.replaceChild(div, img);
+    });
+  });
+
+  // ── Career Timeline: click nodes to switch panels ──
+  document.querySelectorAll('.timeline-node.clickable').forEach(function(node) {
+    node.addEventListener('click', function() {
+      document.querySelectorAll('.timeline-node.clickable').forEach(function(n) { n.classList.remove('active'); });
+      document.querySelectorAll('.career-panel').forEach(function(p) { p.classList.remove('active'); });
+      node.classList.add('active');
+      var panelId = 'panel-' + node.getAttribute('data-tab');
+      var panel = document.getElementById(panelId);
+      if (panel) panel.classList.add('active');
+
+      // Move train to clicked station
+      var train = document.getElementById('career-train');
+      var tab = node.getAttribute('data-tab');
+      if (train) {
+        train.classList.remove('at-ximalaya', 'at-xiaohongshu', 'at-nio');
+        train.classList.add('at-' + tab);
+      }
+    });
+  });
+
+  // ── Smooth reveal for hero elements already in viewport ──
+  // (They use CSS animations, no observer needed)
+})();
+</script>
+</body>
+</html>
